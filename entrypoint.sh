@@ -33,22 +33,7 @@ then
 	echo $'\n' "------ SYNC SUCCESSFUL! -----------------------" $'\n'
 	echo $'\n' "------ GENERATING VERSION FILES ---------------" $'\n'
 
-  echo $'' "- Delete old files " $''
-
-  echo $'' "- Generate new files " $''
-  ssh -i /root/.ssh/id_rsa -tt $1@$2 "timestamp=$(date +%s)"
-  ssh -i /root/.ssh/id_rsa -tt $1@$2 "cp js/app.js js/app_$timestamp.js"
-  ssh -i /root/.ssh/id_rsa -tt $1@$2 "cp js/index.js js/index_$timestamp.js"
-
-  echo $'' "- Replace imports " $''
-  ssh -i /root/.ssh/id_rsa -tt $1@$2 "app=app_$timestamp.js"
-  ssh -i /root/.ssh/id_rsa -tt $1@$2 "index=index_$timestamp.js"
-
-  ssh -i /root/.ssh/id_rsa -tt $1@$2 "sed -i.back 's/js\/app.js/js\/'$app'/g' 'index.html'"
-  ssh -i /root/.ssh/id_rsa -tt $1@$2 "sed -i.back 's/js\/index.js/js\/'$index'/g' 'index.html'"
-
-  echo $'' "- Delete back file " $''
-  ssh -i /root/.ssh/id_rsa -tt $1@$2 "rm index.html.back"
+	ssh -i /root/.ssh/id_rsa -tt $1@$2 "sh script.sh"
 
 	echo $'\n' "------ RELOADING PERMISSION -------------------" $'\n'
 
