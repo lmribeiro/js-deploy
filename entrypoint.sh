@@ -33,7 +33,7 @@ then
 	echo $'\n' "------ SYNC SUCCESSFUL! -----------------------" $'\n'
 	echo $'\n' "------ GENERATING VERSION FILES ---------------" $'\n'
 
-	ssh -i /root/.ssh/id_rsa -tt $1@$2 "sh script.sh"
+	ssh -i /root/.ssh/id_rsa -tt $1@$2 "sh $3/script.sh"
 
 	echo $'\n' "------ RELOADING PERMISSION -------------------" $'\n'
 
