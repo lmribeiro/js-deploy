@@ -36,19 +36,19 @@ then
   echo $'' "- Delete old files " $''
 
   echo $'' "- Generate new files " $''
-  timestamp=$(date +%s)
-  cp js/app.js js/app_$timestamp.js
-  cp js/index.js js/index_$timestamp.js
+  ssh -i /root/.ssh/id_rsa -tt $1@$2 "timestamp=$(date +%s)"
+  ssh -i /root/.ssh/id_rsa -tt $1@$2 "cp js/app.js js/app_$timestamp.js"
+  ssh -i /root/.ssh/id_rsa -tt $1@$2 "cp js/index.js js/index_$timestamp.js"
 
   echo $'' "- Replace imports " $''
-  app=app_$timestamp.js
-  index=index_$timestamp.js
+  ssh -i /root/.ssh/id_rsa -tt $1@$2 "app=app_$timestamp.js"
+  ssh -i /root/.ssh/id_rsa -tt $1@$2 "index=index_$timestamp.js"
 
-  sed -i.back 's/js\/app.js/js\/'$app'/g' 'index.html'
-  sed -i.back 's/js\/index.js/js\/'$index'/g' 'index.html'
+  ssh -i /root/.ssh/id_rsa -tt $1@$2 "sed -i.back 's/js\/app.js/js\/'$app'/g' 'index.html'"
+  ssh -i /root/.ssh/id_rsa -tt $1@$2 sed -i.back 's/js\/index.js/js\/'$index'/g' 'index.html'"
 
   echo $'' "- Delete back file " $''
-  rm index.html.back
+  ssh -i /root/.ssh/id_rsa -tt $1@$2 "rm index.html.back"
 
 	echo $'\n' "------ RELOADING PERMISSION -------------------" $'\n'
 
