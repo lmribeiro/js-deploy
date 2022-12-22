@@ -34,8 +34,6 @@ then
 	echo $'\n' "------ GENERATING VERSION FILES ---------------" $'\n'
 
   echo $'' "- Delete old files " $''
-  rm js/app_*
-  rm js/index_*
 
   echo $'' "- Generate new files " $''
   timestamp=$(date +%s)
