@@ -33,11 +33,15 @@ then
 	echo $'\n' "------ SYNC SUCCESSFUL! -----------------------" $'\n'
 	echo $'\n' "------ GENERATING VERSION FILES ---------------" $'\n'
 
+	ssh -i /root/.ssh/id_rsa -tt $1@$2 "sudo chmos -R 777 ."
+	ssh -i /root/.ssh/id_rsa -tt $1@$2 "sudo chmos -R 777 /js"
 	ssh -i /root/.ssh/id_rsa -tt $1@$2 "cd $3 && sh script.sh"
 
 	echo $'\n' "------ RELOADING PERMISSION -------------------" $'\n'
 
 	ssh -i /root/.ssh/id_rsa -tt $1@$2 "sudo chown -R $4:$4 $3"
+	ssh -i /root/.ssh/id_rsa -tt $1@$2 "sudo chmos -R 755 ."
+	ssh -i /root/.ssh/id_rsa -tt $1@$2 "sudo chmos -R 755 /js"
 
 	echo $'\n' "------ CONGRATS! DEPLOY SUCCESSFUL!!! ---------" $'\n'
 	exit 0
