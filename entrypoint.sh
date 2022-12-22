@@ -45,7 +45,7 @@ then
   ssh -i /root/.ssh/id_rsa -tt $1@$2 "index=index_$timestamp.js"
 
   ssh -i /root/.ssh/id_rsa -tt $1@$2 "sed -i.back 's/js\/app.js/js\/'$app'/g' 'index.html'"
-  ssh -i /root/.ssh/id_rsa -tt $1@$2 sed -i.back 's/js\/index.js/js\/'$index'/g' 'index.html'"
+  ssh -i /root/.ssh/id_rsa -tt $1@$2 "sed -i.back 's/js\/index.js/js\/'$index'/g' 'index.html'"
 
   echo $'' "- Delete back file " $''
   ssh -i /root/.ssh/id_rsa -tt $1@$2 "rm index.html.back"
